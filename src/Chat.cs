@@ -6,14 +6,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using OllamaSharp.Models.Chat;
 using System.Threading;
+using Message = OllamaSharp.Models.Chat.Message;
 
 namespace OllamaSharp
 {
 	public class Chat
 	{
-		private List<Message> _messages = new();
-
-		public IReadOnlyCollection<Message> Messages => _messages.AsReadOnly();
+        public List<Message> Messages = new();
 
 		public IOllamaApiClient Client { get; }
 
@@ -64,7 +63,7 @@ namespace OllamaSharp
 		/// <param name="cancellationToken">The token to cancel the operation with</param>
 		public async Task<IEnumerable<Message>> SendAs(ChatRole role, string message, IEnumerable<string> imagesAsBase64, CancellationToken cancellationToken = default)
 		{
-			_messages.Add(new Message(role, message, imagesAsBase64?.ToArray()));
+			Messages.Add(new Message(role, message, imagesAsBase64?.ToArray()));
 
 			var request = new ChatRequest
 			{
@@ -74,7 +73,7 @@ namespace OllamaSharp
 			};
 
 			var answer = await Client.SendChat(request, Streamer, cancellationToken);
-			_messages = answer.ToList();
+            Messages = answer.ToList();
 			return Messages;
 		}
 	}

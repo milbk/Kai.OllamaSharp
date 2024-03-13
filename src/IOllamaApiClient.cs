@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using OllamaSharp.Models.Chat;
 using System.Threading;
+using Message = OllamaSharp.Models.Chat.Message;
 
 namespace OllamaSharp
 {

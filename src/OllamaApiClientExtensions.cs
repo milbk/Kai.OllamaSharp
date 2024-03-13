@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using OllamaSharp.Models.Chat;
 using System.Threading;
+using Message = OllamaSharp.Models.Chat.Message;
 
 namespace OllamaSharp
 {
@@ -272,5 +273,35 @@ namespace OllamaSharp
 
 			return await client.StreamCompletion(request, new ActionResponseStreamer<GenerateCompletionResponseStream>(streamer), cancellationToken);
 		}
-	}
+
+        public static async Task<ConversationContext> StreamCompletion(this IOllamaApiClient client, string prompt,
+            ConversationContext context, RequestOptions requestOptions,
+            Action<GenerateCompletionResponseStream> streamer, CancellationToken cancellationToken = default)
+        {
+            var request = new GenerateCompletionRequest
+            {
+                Prompt = prompt,
+                Model = client.SelectedModel,
+                Stream = true,
+                Context = context?.Context ?? Array.Empty<long>(),
+                Options = requestOptions
+            };
+
+            return await client.StreamCompletion(request,
+                new ActionResponseStreamer<GenerateCompletionResponseStream>(streamer), cancellationToken);
+        }
+
+        public static async Task<ConversationContext> LoadModel(this IOllamaApiClient client,
+            RequestOptions requestOptions, string keepAlive = "15m")
+        {
+            var request = new GenerateCompletionRequest
+            {
+                Model = client.SelectedModel,
+                KeepAlive = keepAlive,
+                Options = requestOptions
+            };
+
+            return await client.GetCompletion(request);
+        }
+    }
 }
