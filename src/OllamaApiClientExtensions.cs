@@ -291,7 +291,7 @@ namespace OllamaSharp
                 new ActionResponseStreamer<GenerateCompletionResponseStream>(streamer), cancellationToken);
         }
 
-        public static async Task<ConversationContext> LoadModel(this IOllamaApiClient client,
+        public static async Task<ConversationContext> WarmupModel(this IOllamaApiClient client,
             RequestOptions requestOptions, string keepAlive = "15m")
         {
             var request = new GenerateCompletionRequest
@@ -304,7 +304,7 @@ namespace OllamaSharp
             return await client.GetCompletion(request);
         }
 
-        public static async Task<ConversationContext> LoadModel(this IOllamaApiClient client,
+        public static async Task<ConversationContext> WarmupModel(this IOllamaApiClient client,
             string model, RequestOptions requestOptions, string keepAlive = "15m")
         {
             var request = new GenerateCompletionRequest
