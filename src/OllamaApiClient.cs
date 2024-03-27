@@ -148,7 +148,7 @@ namespace OllamaSharp
 
             var responseBody = await response.Content.ReadAsStringAsync(cancellationToken);
             return JsonSerializer.Deserialize<TResponse>(responseBody,
-                new JsonSerializerOptions() {DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull});
+                new JsonSerializerOptions {DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull});
         }
 
         private async Task PostAsync<TRequest>(string endpoint, TRequest request, CancellationToken cancellationToken)
