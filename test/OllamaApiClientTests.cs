@@ -157,7 +157,7 @@ public class OllamaApiClientTests
 
 			var first = models.First();
 			first.Name.Should().Be("codellama:latest");
-			first.ModifiedAt.Date.Should().Be(new DateTime(2023, 10, 12));
+			first.ModifiedAt.Value.Date.Should().Be(new DateTime(2023, 10, 12));
 			first.Size.Should().Be(3791811617);
 			first.Digest.Should().StartWith("36893bf9bc7ff7ace5655");
 		}
