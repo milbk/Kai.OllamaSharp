@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using OllamaSharp.Models.Chat;
 using System.Threading;
@@ -140,16 +141,17 @@ namespace OllamaSharp
 			return await ProcessStreamedCompletionResponseAsync(response, streamer, cancellationToken);
 		}
 
-		private async Task<TResponse> GetAsync<TResponse>(string endpoint, CancellationToken cancellationToken)
-		{
-			var response = await _client.GetAsync(endpoint, cancellationToken);
-			response.EnsureSuccessStatusCode();
+        private async Task<TResponse> GetAsync<TResponse>(string endpoint, CancellationToken cancellationToken)
+        {
+            var response = await _client.GetAsync(endpoint, cancellationToken);
+            response.EnsureSuccessStatusCode();
 
-			var responseBody = await response.Content.ReadAsStringAsync(cancellationToken);
-			return JsonSerializer.Deserialize<TResponse>(responseBody);
-		}
+            var responseBody = await response.Content.ReadAsStringAsync(cancellationToken);
+            return JsonSerializer.Deserialize<TResponse>(responseBody,
+                new JsonSerializerOptions() {DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull});
+        }
 
-		private async Task PostAsync<TRequest>(string endpoint, TRequest request, CancellationToken cancellationToken)
+        private async Task PostAsync<TRequest>(string endpoint, TRequest request, CancellationToken cancellationToken)
 		{
 			var content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
 			var response = await _client.PostAsync(endpoint, content, cancellationToken);
