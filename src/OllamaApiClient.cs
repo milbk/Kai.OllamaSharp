@@ -43,7 +43,12 @@ namespace OllamaSharp
         }
 
         public OllamaApiClient(Configuration config)
-            : this(new HttpClient() { BaseAddress = config.Uri, Timeout = TimeSpan.FromMinutes(15) }, config.Model)
+            : this(
+                new HttpClient()
+                {
+                    BaseAddress = config.Uri, Timeout = TimeSpan.FromMinutes(15),
+                    DefaultRequestHeaders = {{"Access-Control-Allow-Private-Network", "true"}}
+                }, config.Model)
         {
         }
 
