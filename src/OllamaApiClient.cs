@@ -1,4 +1,4 @@
-﻿using OllamaSharp.Models;
+using OllamaSharp.Models;
 using OllamaSharp.Streamer;
 using System;
 using System.Collections.Generic;
@@ -131,6 +131,14 @@ namespace OllamaSharp
 
             return await ProcessStreamedChatResponseAsync(chatRequest, response, streamer, cancellationToken);
         }
+
+		public async Task<bool> IsRunning(CancellationToken cancellationToken = default)
+		{
+			var response = await _client.GetAsync("", cancellationToken); // without route returns "Ollama is running"
+			response.EnsureSuccessStatusCode();
+			var stringContent = await response.Content.ReadAsStringAsync();
+			return !string.IsNullOrWhiteSpace(stringContent);
+		}
 
         private async Task<ConversationContext> GenerateCompletion(GenerateCompletionRequest generateRequest, IResponseStreamer<GenerateCompletionResponseStream> streamer, CancellationToken cancellationToken)
         {
