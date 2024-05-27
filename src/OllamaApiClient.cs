@@ -47,7 +47,7 @@ namespace OllamaSharp
                 new HttpClient()
                 {
                     BaseAddress = config.Uri, Timeout = TimeSpan.FromMinutes(15),
-                    DefaultRequestHeaders = {{"Access-Control-Allow-Private-Network", "true"}}
+                    //DefaultRequestHeaders = {{"Access-Control-Allow-Private-Network", "true"}}
                 }, config.Model)
         {
         }
