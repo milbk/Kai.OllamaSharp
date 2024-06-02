@@ -24,13 +24,13 @@ namespace OllamaSharp.Models
         [JsonPropertyName("modified_at")] public DateTime? ModifiedAt { get; set; }
 
         [JsonPropertyName("size")] public long? Size { get; set; }
+
         [JsonPropertyName("size_vram")] public long? SizeVRAM { get; set; }
 
         [JsonPropertyName("digest")] public string? Digest { get; set; }
 
         [JsonPropertyName("details")] public Details? Details { get; set; }
 
-        [JsonPropertyName("expires_at")] public DateTime? ExpiresAt { get; set; }
         [JsonPropertyName("expires_at")] public DateTime? ExpiresAt { get; set; }
     }
 }
