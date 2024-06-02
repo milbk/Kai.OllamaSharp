@@ -80,6 +80,12 @@ namespace OllamaSharp
             return data.Models;
         }
 
+        public async Task<IEnumerable<RunningModel>> ListRunningModels(CancellationToken cancellationToken = default)
+        {
+            var data = await GetAsync<ListRunningModelsResponse>("/api/ps", cancellationToken);
+            return data.RunningModels;
+        }
+
         public async Task<ShowModelResponse> ShowModelInformation(string model, CancellationToken cancellationToken = default)
         {
             return await PostAsync<ShowModelRequest, ShowModelResponse>("/api/show", new ShowModelRequest { Name = model }, cancellationToken);
