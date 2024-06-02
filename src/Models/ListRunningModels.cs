@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 namespace OllamaSharp.Models
 {
     /// <summary>
-    /// https://github.com/jmorganca/ollama/blob/main/docs/api.md#list-local-models
+    /// /api/ps
     /// </summary>
 
     [JsonUnmappedMemberHandling(JsonUnmappedMemberHandling.Skip)]
