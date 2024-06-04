@@ -31,7 +31,13 @@ namespace OllamaSharp.Models
 		/// </summary>
 		[JsonPropertyName("stream")]
 		public bool Stream { get; set; }
-	}
+
+        /// <summary>
+        /// Quantize model to this level (e.g. q4_0)
+        /// </summary>
+        [JsonPropertyName("quantize")]
+        public string? Quantize { get; set; }
+}
 
 	public class CreateStatus
 	{
