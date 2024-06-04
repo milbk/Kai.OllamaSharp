@@ -2,10 +2,12 @@
 
 namespace OllamaSharp.Models
 {
-	/// <summary>
-	/// https://github.com/jmorganca/ollama/blob/main/docs/api.md#create-a-model
-	/// </summary>
-	public class CreateModelRequest
+    /// <summary>
+    /// https://github.com/jmorganca/ollama/blob/main/docs/api.md#create-a-model
+    /// </summary>
+    
+    [JsonUnmappedMemberHandling(JsonUnmappedMemberHandling.Skip)]
+    public class CreateModelRequest
 	{
 		/// <summary>
 		/// Name of the model to create
@@ -33,7 +35,7 @@ namespace OllamaSharp.Models
 		public bool Stream { get; set; }
 
         /// <summary>
-        /// Quantize model to this level (e.g. q4_0)
+        /// Set the quantization level of the quantize model when importing (e.g. q4_0, optional)
         /// </summary>
         [JsonPropertyName("quantize")]
         public string? Quantize { get; set; }
