@@ -7,7 +7,7 @@ namespace OllamaSharp.Models
 	/// </summary>
 	public class PullModelRequest
 	{
-		[JsonPropertyName("name")]
+		[JsonPropertyName("model")]
 		public string Name { get; set; }
 
 		[JsonPropertyName("insecure")]

@@ -10,7 +10,7 @@ namespace OllamaSharp.Models
 		/// <summary>
 		/// Name of the model to create
 		/// </summary>
-		[JsonPropertyName("name")]
+		[JsonPropertyName("model")]
 		public string Name { get; set; }
 
 		/// <summary>

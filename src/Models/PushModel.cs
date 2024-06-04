@@ -10,7 +10,7 @@ namespace OllamaSharp.Models
 		/// <summary>
 		/// Name of the model to push in the form of <namespace>/<model>:<tag>
 		/// </summary>
-		[JsonPropertyName("name")]
+		[JsonPropertyName("model")]
 		public string Name { get; set; }
 
 		[JsonPropertyName("insecure")]

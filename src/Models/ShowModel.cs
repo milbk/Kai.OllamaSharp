@@ -11,7 +11,7 @@ namespace OllamaSharp.Models
 		/// <summary>
 		/// The name of the model to show
 		/// </summary>
-		[JsonPropertyName("name")]
+		[JsonPropertyName("model")]
 		public string Name { get; set; }
 	}
 
