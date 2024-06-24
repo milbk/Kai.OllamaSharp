@@ -36,7 +36,7 @@ namespace OllamaSharp.Models
 		public ShowModelResponseDetails Details { get; set; } = null!;
 
         [JsonPropertyName("model_info")]
-        public ModelInfo ModelInfo { get; set; } = null!;
+        public ModelInfo Info { get; set; } = null!;
     }
 
     public class ModelInfo
@@ -45,7 +45,7 @@ namespace OllamaSharp.Models
         public string? Architecture { get; set; }
 
         [JsonPropertyName("general.file_type")]
-        public int? QeneralfileType { get; set; }
+        public int? FileType { get; set; }
 
         [JsonPropertyName("general.parameter_count")]
         public long? ParameterCount { get; set; }
@@ -54,9 +54,8 @@ namespace OllamaSharp.Models
         public int? QuantizationVersion { get; set; }
 
         [JsonExtensionData]
-        private IDictionary<string, string>? ExtraInfo;
+        public IDictionary<string, object>? ExtraInfo { get; set; }
     }
-
 
     public class ShowModelResponseDetails
 	{
