@@ -34,10 +34,31 @@ namespace OllamaSharp.Models
 
 		[JsonPropertyName("details")]
 		public ShowModelResponseDetails Details { get; set; } = null!;
-	}
-	
-	
-	public class ShowModelResponseDetails
+
+        [JsonPropertyName("model_info")]
+        public ModelInfo ModelInfo { get; set; } = null!;
+    }
+
+    public class ModelInfo
+    {
+        [JsonPropertyName("general.architecture")]
+        public string? Architecture { get; set; }
+
+        [JsonPropertyName("general.file_type")]
+        public int? QeneralfileType { get; set; }
+
+        [JsonPropertyName("general.parameter_count")]
+        public long? ParameterCount { get; set; }
+
+        [JsonPropertyName("general.quantization_version")]
+        public int? QuantizationVersion { get; set; }
+
+        [JsonExtensionData]
+        private IDictionary<string, string>? ExtraInfo;
+    }
+
+
+    public class ShowModelResponseDetails
 	{
 		[JsonPropertyName("parent_model")]
 		public string? ParentModel { get; set; }
